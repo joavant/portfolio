@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <!-- Chargement de Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuration personnalisée de Tailwind pour les couleurs et la police -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dark-gray': '#333333',
+                        'accent-orange': '#ff6600',
+                        'light-gray': '#f3f4f6',
+                        'medium-gray': '#e5e7eb',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Chargement de la police Inter depuis Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter bg-dark-gray text-gray-800 antialiased">
+
+    <!-- En-tête -->
+    <header class="bg-dark-gray text-white py-4 text-center border-b-2 border-accent-orange shadow-lg">
+        <h1 class="text-4xl font-bold">Mon Portfolio</h1>
+    </header>
+
+    <!-- Conteneur principal -->
+    <div class="container mx-auto px-4 py-8 pb-20">
+
+        <!-- Section Profil -->
+        <section class="profile bg-white text-black text-center p-8 m-4 rounded-xl shadow-xl mb-12">
+            <h1 class="text-5xl font-extrabold mb-4">Joachim SERVANT</h1>
+            <p class="text-lg mb-2">- En 2nd au lycée Thiers à Marseille</p>
+            <p class="text-lg mb-2">- Créatif, j'aime dessiner, je me suis mis à la photographie</p>
+            <p class="text-lg mb-2">- Sportif, fais du parkour depuis 4 ans</p>
+            <p class="text-lg">- Bénévole Unicef (Jeune ambassadeur)</p>
+        </section>
+
+        <!-- Section Mes objectifs -->
+        <section class="mb-12">
+            <div class="experience bg-white text-black text-center p-6 m-4 rounded-xl shadow-md">
+                <!-- Changé de h1 à h2 pour la sémantique -->
+                <h2 class="text-3xl font-semibold mb-4">Mes objectifs</h2>
+                <p class="text-lg mb-2">Mon objectif principal est d'être heureux.</p>
+                <p class="text-lg mb-4">Qu'est ce qui me rendrait heureux ?</p>
+                <!-- Utilisation des classes Tailwind pour la liste -->
+                <ul class="list-disc list-inside text-gray-700">
+                    <li class="mb-1">Être admis à UWC</li>
+                    <li class="mb-1">Faire des randonnées avec mes ami(e)s</li>
+                    <li class="mb-1">Voir ma famille</li>
+                    <li class="mb-1">M'amuser</li>
+                    <li class="mb-1">Faire du parkour</li>
+                    <li class="mb-1">Écouter de la bonne musique</li>
+                    <li>ET bien d'autres choses...</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section Mes Expériences -->
+        <section class="mb-12">
+            <h2 class="text-4xl font-bold text-white text-center mb-8">Mes Expériences</h2>
+
+            <!-- Expérience 2024 -->
+            <div class="experience bg-white p-6 m-4 rounded-xl shadow-md mb-8">
+                <h3 class="text-3xl font-semibold text-accent-orange mb-4">Expérience 2024</h3>
+                <div class="mb-4">
+                    <h4 class="text-2xl font-medium mb-2">Bénévolat</h4>
+                    <p class="text-gray-700 mb-1"><strong>Poste:</strong> Bénévole chez <a href="https://www.chalain-biathlon.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Chalain-biathlon</a></p>
+                    <p class="text-gray-700 mb-1"><strong>Durée:</strong> 4 jours pendant les vacances 2024</p>
+                    <p class="text-gray-700"><strong>Association:</strong> Festival Idéklic</p>
+                </div>
+            </div>
+
+            <!-- Expérience 2025 -->
+            <div class="experience bg-white p-6 m-4 rounded-xl shadow-md">
+                <h3 class="text-3xl font-semibold text-accent-orange mb-4">Expérience 2025</h3>
+                <div class="mb-4">
+                    <h4 class="text-2xl font-medium mb-2">Stage de 3ème</h4>
+                    <p class="text-gray-700 mb-1"><strong>Lieu:</strong> CNRS de Grenoble</p>
+                    <p class="text-gray-700"><strong>Tuteur de stage:</strong> Bruno Fernandez et Grégory Garde</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="text-2xl font-medium mb-2">Le journal des minots</h4>
+                    <p class="text-gray-700">Le Journal des minots est le journal de mon collège, il est entièrement écrit par les élèves; que ce soit pour le choix des articles ou la façon dont nous l'avons écrit.</p>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-medium mb-2">Bénévolat</h4>
+                    <p class="text-gray-700 mb-1"><strong>Poste:</strong> Bénévole dans l'atelier de <a href="https://www.instagram.com/carolyn_manga/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Carolyn</a></p>
+                    <p class="text-gray-700 mb-1"><strong>Durée:</strong> 4 jours pendant les vacances 2025</p>
+                    <p class="text-gray-700"><strong>Association:</strong> Festival Idéklic</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Mes Projets & Idées -->
+        <section>
+            <h2 class="text-4xl font-bold text-white text-center mb-8">Mes Projets & Idées</h2>
+            <div class="projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Projet 1: Jarvis -->
+                <div class="project bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-3xl font-semibold text-accent-orange mb-4">Projet 1: Jarvis</h3>
+                    <p class="text-lg font-bold text-green-600 mb-2">État: Fini !</p>
+                    <p class="text-gray-700 mb-4"><strong>Objectif:</strong> Faire un chatbot intelligent, qui peut communiquer avec les gens, le plus humainement possible.</p>
+                    <!-- Correction de la classe text-700 en text-gray-700 -->
+                    <p class="text-gray-700 mb-4"><strong>Final:</strong> Un assistant comme Jarvis dans le film d'Iron Man.</p>
+                    <a href="https://drive.google.com/drive/folders/15J1-pNUEFDyAqtrrrlxiRTaJhSsuWwO9?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors duration-300">Voir le code (Google Drive)</a>
+                </div>
+
+                <!-- Projet 2: Soufflerie -->
+                <div class="project bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-3xl font-semibold text-accent-orange mb-4">Projet 2: Soufflerie</h3>
+                    <p class="text-lg font-bold text-green-600 mb-2">État: Fini !</p>
+                    <p class="text-gray-700 mb-4"><strong>Objectif:</strong> Une soufflerie pour tester l'aérodynamique des objets.</p><br>
+                    <!-- Suppression des balises <br> et utilisation des marges Tailwind -->
+                    <p class="text-gray-700 mb-4"><strong>Final:</strong> Une soufflerie qui fonctionne.</p><br>
+                    <button id="openSoufflerieVideo" class="inline-block bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors duration-300">Voir la vidéo</button>
+                </div>
+
+                <!-- Idée 1: Base de donnée santé -->
+                <div class="project bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-3xl font-semibold text-accent-orange mb-4">Idée 1: Base de donnée santé</h3>
+                    <p class="text-lg font-bold text-yellow-600 mb-2">État: Stagnant</p>
+                    <p class="text-gray-700 mb-4">Créer une base de données comprenant toutes les maladies du monde, associées avec leurs symptômes et une option pour chercher les maladies ou les symptômes.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modale pour la vidéo de la soufflerie -->
+    <div id="soufflerieVideoModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden p-4">
+        <div class="relative bg-white rounded-lg shadow-xl w-full max-w-3xl h-auto overflow-hidden">
+            <button id="closeSoufflerieVideoModal" class="absolute top-3 right-3 text-gray-700 hover:text-gray-900 text-3xl font-bold z-10">
+                &times;
+            </button>
+            <div class="relative pt-[56.25%]">
+                <iframe
+                    class="absolute top-0 left-0 w-full h-full rounded-lg"
+                    <!-- Correction de l'URL de la vidéo YouTube -->
+                    src="https://www.youtube.com/embed/zZSfZBnjHd4?autoplay=1&end=1080"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    title="Vidéo de la soufflerie"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer class="bg-dark-gray text-white text-center py-4 border-t-2 border-accent-orange fixed bottom-0 w-full shadow-inner">
+        <p class="text-sm">&copy; 2024 SERVANT Joachim. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script JavaScript pour la modale -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const openButton = document.getElementById('openSoufflerieVideo');
+            const modal = document.getElementById('soufflerieVideoModal');
+            const closeButton = document.getElementById('closeSoufflerieVideoModal');
+            const videoIframe = modal.querySelector('iframe');
+
+            // Correction de l'URL de la vidéo YouTube dans le JavaScript
+            const videoURL = "https://www.youtube.com/embed/zZSfZBnjHd4?autoplay=1&end=1080"; // 18min = 1080sec
+
+            openButton.addEventListener('click', function () {
+                modal.classList.remove('hidden');
+                videoIframe.src = videoURL;
+            });
+
+            function closeVideoModal() {
+                modal.classList.add('hidden');
+                videoIframe.src = ""; // Vide le src pour arrêter la vidéo
+            }
+
+            closeButton.addEventListener('click', closeVideoModal);
+
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    closeVideoModal();
+                }
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeVideoModal();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
