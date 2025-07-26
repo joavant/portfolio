@@ -35,6 +35,7 @@
         .fade-in-up.is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
     </style>
 
     <!-- Chargement de la police Inter depuis Google Fonts -->
@@ -210,6 +211,29 @@
                 if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
                     closeVideoModal();
                 }
+            });
+        });
+
+        // --- Animations au défilement (Scroll-triggered animations) ---
+            const fadeInElements = document.querySelectorAll('.fade-in-up');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% de l'élément visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Arrête d'observer une fois visible
+                    }
+                });
+            }, observerOptions);
+
+            fadeInElements.forEach(element => {
+                observer.observe(element);
             });
         });
     </script>
