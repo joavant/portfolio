@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
+    <title data-i18n-key="pageTitle">Mon Portfolio</title>
     <!-- Chargement de Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -36,6 +36,29 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Style pour la barre de navigation mobile */
+        .bottom-nav {
+            background-color: #333333; /* dark-gray */
+            border-top: 2px solid #ff6600; /* accent-orange */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .bottom-nav a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0;
+            color: white;
+            transition: color 0.2s ease-in-out;
+        }
+        .bottom-nav a:hover {
+            color: #ff6600; /* accent-orange */
+        }
+        .bottom-nav a i {
+            margin-bottom: 0.25rem;
+        }
     </style>
 
     <!-- Chargement de la police Inter depuis Google Fonts -->
@@ -43,107 +66,120 @@
     <!-- Chargement de Lucide Icons pour des icônes modernes -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="font-inter bg-dark-gray text-gray-800 antialiased">
+<body class="font-inter bg-dark-gray text-gray-800 antialiased" data-lang="fr">
 
     <!-- En-tête -->
-    <header class="bg-dark-gray text-white py-4 text-center border-b-2 border-accent-orange shadow-lg">
-        <h1 class="text-4xl font-bold">Mon Portfolio</h1>
+    <header class="bg-dark-gray text-white py-4 text-center border-b-2 border-accent-orange shadow-lg relative">
+        <h1 class="text-4xl font-bold inline-block" data-i18n-key="portfolioTitle">Mon Portfolio</h1>
+        <!-- Bouton de changement de langue -->
+        <button id="lang-switch-button" class="absolute top-4 right-4 p-2 rounded-md bg-accent-orange text-white text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-accent-orange hover:bg-orange-700 transition-colors duration-200">
+            EN / FR
+        </button>
     </header>
 
     <!-- Conteneur principal -->
-    <div class="container mx-auto px-4 pr-24 py-8 pb-20"> <!-- Ajout de pr-24 pour la navigation latérale -->
+    <div class="container mx-auto px-4 py-8 pb-20 md:pr-24"> <!-- pr-24 appliqué seulement sur md et plus -->
+
+        <!-- Bouton "Découvrir mes projets" -->
+        <div class="text-center mb-12 fade-in-up">
+            <a href="#projets-section" class="inline-block bg-accent-orange text-white px-8 py-4 rounded-lg font-semibold text-xl shadow-lg hover:bg-orange-700 transition-colors duration-300 transform hover:scale-105">
+                <span class="flex items-center justify-center" data-i18n-key="discoverProjectsButton">
+                    <i data-lucide="arrow-down-circle" class="w-6 h-6 mr-3"></i> Découvrir mes projets
+                </span>
+            </a>
+        </div>
 
         <!-- Section Profil -->
         <section id="profile-section" class="profile bg-white text-black text-center p-8 m-4 rounded-xl shadow-xl mb-12 fade-in-up">
-            <h1 class="text-5xl font-extrabold mb-4">Joachim SERVANT</h1>
-            <p class="text-lg mb-2">- En 2nd au lycée Thiers à Marseille</p>
-            <p class="text-lg mb-2">- Créatif, j'aime dessiner, je me suis mis à la photographie</p>
-            <p class="text-lg mb-2">- Sportif, fais du parkour depuis 4 ans</p>
-            <p class="text-lg mb-2">- Bénévole Unicef (Jeune ambassadeur)</p>
+            <h1 class="text-5xl font-extrabold mb-4" data-i18n-key="profileName">Joachim SERVANT</h1>
+            <p class="text-lg mb-2" data-i18n-key="profileLine1">- En 2nd au lycée Thiers à Marseille</p>
+            <p class="text-lg mb-2" data-i18n-key="profileLine2">- Créatif, j'aime dessiner, je me suis mis à la photographie</p>
+            <p class="text-lg mb-2" data-i18n-key="profileLine3">- Sportif, fais du parkour depuis 4 ans</p>
+            <p class="text-lg mb-2" data-i18n-key="profileLine4">- Bénévole Unicef (Jeune ambassadeur)</p>
         </section>
 
         <!-- Section Mes objectifs -->
         <section id="objectifs-section" class="mb-12 fade-in-up">
             <div class="experience bg-white text-black text-center p-6 m-4 rounded-xl shadow-md">
-                <h2 class="text-3xl font-semibold mb-4">Mes objectifs</h2>
-                <p class="text-lg mb-2">Mon objectif principal est d'être heureux.</p>
-                <p class="text-lg mb-4">Qu'est ce qui me rend heureux ?</p>
+                <h2 class="text-3xl font-semibold mb-4" data-i18n-key="objectivesTitle">Mes objectifs</h2>
+                <p class="text-lg mb-2" data-i18n-key="objectivesIntro1">Mon objectif principal est d'être heureux.</p>
+                <p class="text-lg mb-4" data-i18n-key="objectivesIntro2">Qu'est ce qui me rend heureux ?</p>
                 <ul class="list-disc list-inside text-gray-700">
-                    <li class="mb-1">Faire des randonnées avec mes ami(e)s</li>
-                    <li class="mb-1">Voir ma famille</li>
-                    <li class="mb-1">M'amuser</li>
-                    <li class="mb-1">Faire du parkour</li>
-                    <li class="mb-1">Écouter de la bonne musique</li>
-                    <li class="mb-1">Et d'être admis à UWC</li>
+                    <li class="mb-1" data-i18n-key="objective1">Faire des randonnées avec mes ami(e)s</li>
+                    <li class="mb-1" data-i18n-key="objective2">Voir ma famille</li>
+                    <li class="mb-1" data-i18n-key="objective3">M'amuser</li>
+                    <li class="mb-1" data-i18n-key="objective4">Faire du parkour</li>
+                    <li class="mb-1" data-i18n-key="objective5">Écouter de la bonne musique</li>
+                    <li class="mb-1" data-i18n-key="objective6">Et d'être admis à UWC</li>
                 </ul>
             </div>
         </section>
 
         <!-- Section Mes Expériences -->
         <section id="experiences-section" class="mb-12 fade-in-up">
-            <h2 class="text-4xl font-bold text-white text-center mb-8">Mes Expériences</h2>
+            <h2 class="text-4xl font-bold text-white text-center mb-8" data-i18n-key="experiencesTitle">Mes Expériences</h2>
 
             <!-- Expérience 2024 -->
             <div class="experience bg-white p-6 m-4 rounded-xl shadow-md mb-8">
-                <h3 class="text-3xl font-semibold text-accent-orange mb-4">Expérience 2024</h3>
+                <h3 class="text-3xl font-semibold text-accent-orange mb-4" data-i18n-key="experience2024Title">Expérience 2024</h3>
                 <div class="mb-4">
-                    <h4 class="text-2xl font-medium mb-2">Bénévolat</h4>
-                    <p class="text-gray-700 mb-1"><strong>Poste:</strong> Bénévole chez <a href="https://www.chalain-biathlon.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Chalain-biathlon</a></p>
-                    <p class="text-gray-700 mb-1"><strong>Durée:</strong> 4 jours pendant les vacances 2024</p>
-                    <p class="text-gray-700"><strong>Association:</strong> Festival Idéklic</p>
+                    <h4 class="text-2xl font-medium mb-2" data-i18n-key="benevolatTitle">Bénévolat</h4>
+                    <p class="text-gray-700 mb-1"><strong data-i18n-key="postLabel">Poste:</strong> <span data-i18n-key="benevolatPost2024">Bénévole chez</span> <a href="https://www.chalain-biathlon.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Chalain-biathlon</a></p>
+                    <p class="text-gray-700 mb-1"><strong data-i18n-key="durationLabel">Durée:</strong> <span data-i18n-key="duration2024">4 jours pendant les vacances 2024</span></p>
+                    <p class="text-gray-700"><strong data-i18n-key="associationLabel">Association:</strong> <span data-i18n-key="association2024">Festival Idéklic</span></p>
                 </div>
             </div>
 
             <!-- Expérience 2025 -->
             <div class="experience bg-white p-6 m-4 rounded-xl shadow-md fade-in-up">
-                <h3 class="text-3xl font-semibold text-accent-orange mb-4">Expérience 2025</h3>
+                <h3 class="text-3xl font-semibold text-accent-orange mb-4" data-i18n-key="experience2025Title">Expérience 2025</h3>
                 <div class="mb-4">
-                    <h4 class="text-2xl font-medium mb-2">Stage de 3ème</h4>
-                    <p class="text-gray-700 mb-1"><strong>Lieu:</strong> CNRS de Grenoble</p>
-                    <p class="text-gray-700"><strong>Tuteur de stage:</strong> Bruno Fernandez et Grégory Garde</p>
+                    <h4 class="text-2xl font-medium mb-2" data-i18n-key="stage3emeTitle">Stage de 3ème</h4>
+                    <p class="text-gray-700 mb-1"><strong data-i18n-key="locationLabel">Lieu:</strong> <span data-i18n-key="locationCNRS">CNRS de Grenoble</span></p>
+                    <p class="text-gray-700"><strong data-i18n-key="tutorLabel">Tuteur de stage:</strong> <span data-i18n-key="tutorNames">Bruno Fernandez et Grégory Garde</span></p>
                 </div>
                 <div class="mb-4">
-                    <h4 class="text-2xl font-medium mb-2">Le journal des minots</h4>
-                    <p class="text-gray-700">Le Journal des minots est le journal de mon collège, il est entièrement écrit par les élèves; que ce soit pour le choix des articles ou la façon dont nous l'avons écrit.</p>
+                    <h4 class="text-2xl font-medium mb-2" data-i18n-key="journalMinotsTitle">Le journal des minots</h4>
+                    <p class="text-gray-700" data-i18n-key="journalMinotsText">Le Journal des minots est le journal de mon collège, il est entièrement écrit par les élèves; que ce soit pour le choix des articles ou la façon dont nous l'avons écrit.</p>
                 </div>
                 <div>
-                    <h4 class="text-2xl font-medium mb-2">Bénévolat</h4>
-                    <p class="text-gray-700 mb-1"><strong>Poste:</strong> Bénévole dans l'atelier de <a href="https://www.instagram.com/carolyn_manga/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Carolyn</a></p>
-                    <p class="text-gray-700 mb-1"><strong>Durée:</strong> 4 jours pendant les vacances 2025</p>
-                    <p class="text-gray-700"><strong>Association:</strong> Festival Idéklic</p>
+                    <h4 class="text-2xl font-medium mb-2" data-i18n-key="benevolatTitle">Bénévolat</h4>
+                    <p class="text-gray-700 mb-1"><strong data-i18n-key="postLabel">Poste:</strong> <span data-i18n-key="benevolatPostCarolyn">Bénévole dans l'atelier de</span> <a href="https://www.instagram.com/carolyn_manga/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Carolyn</a></p>
+                    <p class="text-gray-700 mb-1"><strong data-i18n-key="durationLabel">Durée:</strong> <span data-i18n-key="duration2025">4 jours pendant les vacances 2025</span></p>
+                    <p class="text-gray-700"><strong data-i18n-key="associationLabel">Association:</strong> <span data-i18n-key="associationIdeklic">Festival Idéklic</span></p>
                 </div>
             </div>
         </section>
 
         <!-- Section Mes Projets & Idées -->
-        <section id="projets-section" class="fade-in-up">
-            <h2 class="text-4xl font-bold text-white text-center mb-8">Mes Projets & Idées</h2>
+        <section id="projets-section" class="mb-24 fade-in-up"> <!-- Increased bottom margin -->
+            <h2 class="text-4xl font-bold text-white text-center mb-8" data-i18n-key="projectsTitle">Mes Projets & Idées</h2>
             <div class="projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Projet 1: Jarvis -->
                 <div class="project bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 fade-in-up">
-                    <h3 class="text-3xl font-semibold text-accent-orange mb-4">Projet 1: Jarvis</h3>
-                    <p class="text-lg font-bold text-green-600 mb-2">État: Fini !</p>
-                    <p class="text-gray-700 mb-4"><strong>Objectif:</strong> Faire un chatbot intelligent, qui peut communiquer avec les gens, le plus humainement possible.</p>
-                    <p class="text-gray-700 mb-4"><strong>Final:</strong> Un assistant comme Jarvis dans le film d'Iron Man.</p>
-                    <a href="https://drive.google.com/drive/folders/15J1-pNUEFDyAqtrrrlxiRTaJhSsuWwO9?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors duration-300">Voir le code (Google Drive)</a>
+                    <h3 class="text-3xl font-semibold text-accent-orange mb-4" data-i18n-key="jarvisTitle">Projet 1: Jarvis</h3>
+                    <p class="text-lg font-bold text-green-600 mb-2" data-i18n-key="statusFinished">État: Fini !</p>
+                    <p class="text-gray-700 mb-4"><strong data-i18n-key="objectiveLabel">Objectif:</strong> <span data-i18n-key="jarvisObjective">Faire un chatbot intelligent, qui peut communiquer avec les gens, le plus humainement possible.</span></p>
+                    <p class="text-gray-700 mb-4"><strong data-i18n-key="finalLabel">Final:</strong> <span data-i18n-key="jarvisFinal">Un assistant comme Jarvis dans le film d'Iron Man.</span></p>
+                    <a href="https://drive.google.com/drive/folders/15J1-pNUEFDyAqtrrrlxiRTaJhSsuWwO9?usp=drive_link" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors duration-300" data-i18n-key="viewCodeButton">Voir le code (Google Drive)</a>
                 </div>
 
                 <!-- Projet 2: Soufflerie -->
                 <div class="project bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 fade-in-up">
-                    <h3 class="text-3xl font-semibold text-accent-orange mb-4">Projet 2: Soufflerie</h3>
-                    <p class="text-lg font-bold text-green-600 mb-2">État: Fini !</p>
-                    <p class="text-gray-700 mb-4"><strong>Objectif:</strong> Une soufflerie pour tester l'aérodynamique des objets.</p>
-                    <p class="text-gray-700 mb-4"><strong>Final:</strong> Une soufflerie qui fonctionne.</p>
-                    <button id="openSoufflerieVideo" class="inline-block bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors duration-300">Voir la vidéo</button>
+                    <h3 class="text-3xl font-semibold text-accent-orange mb-4" data-i18n-key="soufflerieTitle">Projet 2: Soufflerie</h3>
+                    <p class="text-lg font-bold text-green-600 mb-2" data-i18n-key="statusFinished">État: Fini !</p>
+                    <p class="text-gray-700 mb-4"><strong data-i18n-key="objectiveLabel">Objectif:</strong> <span data-i18n-key="soufflerieObjective">Une soufflerie pour tester l'aérodynamique des objets.</span></p>
+                    <p class="text-gray-700 mb-4"><strong data-i18n-key="finalLabel">Final:</strong> <span data-i18n-key="soufflerieFinal">Une soufflerie qui fonctionne.</span></p>
+                    <button id="openSoufflerieVideo" class="inline-block bg-accent-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors duration-300" data-i18n-key="viewVideoButton">Voir la vidéo</button>
                 </div>
 
                 <!-- Idée 1: Base de donnée santé -->
                 <div class="project bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 fade-in-up">
-                    <h3 class="text-3xl font-semibold text-accent-orange mb-4">Idée 1: Base de donnée santé</h3>
-                    <p class="text-lg font-bold text-yellow-600 mb-2">État: En attente</p>
-                    <p class="text-gray-700 mb-4">Créer une base de données comprenant toutes les maladies du monde, associées avec leurs symptômes et une option pour chercher les maladies ou les symptômes.</p>
-                    <a href="#" class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg font-semibold cursor-not-allowed opacity-75">En savoir plus (bientôt)</a>
+                    <h3 class="text-3xl font-semibold text-accent-orange mb-4" data-i18n-key="healthDBTitle">Idée 1: Base de donnée santé</h3>
+                    <p class="text-lg font-bold text-yellow-600 mb-2" data-i18n-key="statusPending">État: En attente</p>
+                    <p class="text-gray-700 mb-4"><span data-i18n-key="healthDBObjective">Créer une base de données comprenant toutes les maladies du monde, associées avec leurs symptômes et une option pour chercher les maladies ou les symptômes.</span></p>
+                    <a href="#" class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg font-semibold cursor-not-allowed opacity-75" data-i18n-key="learnMoreSoonButton">En savoir plus (bientôt)</a>
                 </div>
 
             </div>
@@ -151,17 +187,17 @@
 
         <!-- Nouvelle Section : Me Contacter -->
         <section id="contact-section" class="mb-12 fade-in-up">
-            <h2 class="text-4xl font-bold text-white text-center mb-8">Me Contacter</h2>
+            <h2 class="text-4xl font-bold text-white text-center mb-8" data-i18n-key="contactTitle">Me Contacter</h2>
             <div class="bg-white p-8 m-4 rounded-xl shadow-md text-center">
-                <p class="text-lg text-gray-700 mb-6">N'hésitez pas à me contacter pour toute question, opportunité ou simplement pour discuter !</p>
+                <p class="text-lg text-gray-700 mb-6" data-i18n-key="contactIntro">N'hésitez pas à me contacter pour toute question, opportunité ou simplement pour discuter !</p>
                 <div class="flex justify-center space-x-6">
                     <a href="mailto:servjoachim@gmail.com" class="text-accent-orange hover:text-orange-700 transition-colors duration-300" aria-label="Envoyer un email">
                         <i data-lucide="mail" class="w-8 h-8"></i>
                     </a>
                     <a href="https://www.instagram.com/@Joachim_vant/" target="_blank" rel="noopener noreferrer" class="text-accent-orange hover:text-orange-700 transition-colors duration-300" aria-label="Profil Instagram">
-                        <i data-lucide="instagram" class="w-8 h-8"></i>
-                        
-                    <a href="https://github.com/joavant/" class="text-accent-orange hover:text-orange-700 transition-colors duration-300" aria-label="Profil GitHub">
+                        <i data-lucide="instagram" class="w-8 h-8"></i> <!-- Changed to instagram icon -->
+                    </a>
+                    <a href="https://github.com/votreprofil" target="_blank" rel="noopener noreferrer" class="text-accent-orange hover:text-orange-700 transition-colors duration-300" aria-label="Profil GitHub">
                         <i data-lucide="github" class="w-8 h-8"></i>
                     </a>
                 </div>
@@ -193,40 +229,76 @@
 
     <!-- Pied de page -->
     <footer class="bg-dark-gray text-white text-center py-4 border-t-2 border-accent-orange fixed bottom-0 w-full shadow-inner">
-        <p class="text-sm">&copy; 2025 SERVANT Joachim. Tous droits réservés.</p>
+        <p class="text-sm" data-i18n-key="copyright">&copy; 2025 SERVANT Joachim. Tous droits réservés.</p>
     </footer>
 
-    <!-- Fixed Navigation Sidebar -->
-    <nav class="fixed right-0 top-1/2 -translate-y-1/2 bg-dark-gray p-3 rounded-l-lg shadow-xl z-50 border-l-2 border-accent-orange">
+    <!-- Fixed Navigation Sidebar (hidden on mobile, block on md and up) -->
+    <nav class="fixed right-0 top-1/2 -translate-y-1/2 bg-dark-gray p-3 rounded-l-lg shadow-xl z-50 border-l-2 border-accent-orange hidden md:block">
         <ul class="space-y-2">
             <li>
                 <a href="#profile-section" class="flex items-center text-white hover:text-accent-orange transition-colors duration-200 group" aria-label="Aller à la section Profil">
                     <i data-lucide="user" class="w-5 h-5 mr-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="hidden md:inline text-sm">Profil</span>
+                    <span class="hidden md:inline text-sm" data-i18n-key="navProfile">Profil</span>
                 </a>
             </li>
             <li>
                 <a href="#objectifs-section" class="flex items-center text-white hover:text-accent-orange transition-colors duration-200 group" aria-label="Aller à la section Mes objectifs">
                     <i data-lucide="target" class="w-5 h-5 mr-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="hidden md:inline text-sm">Objectifs</span>
+                    <span class="hidden md:inline text-sm" data-i18n-key="navObjectives">Objectifs</span>
                 </a>
             </li>
             <li>
                 <a href="#experiences-section" class="flex items-center text-white hover:text-accent-orange transition-colors duration-200 group" aria-label="Aller à la section Mes Expériences">
                     <i data-lucide="briefcase" class="w-5 h-5 mr-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="hidden md:inline text-sm">Expériences</span>
+                    <span class="hidden md:inline text-sm" data-i18n-key="navExperiences">Expériences</span>
                 </a>
             </li>
             <li>
                 <a href="#projets-section" class="flex items-center text-white hover:text-accent-orange transition-colors duration-200 group" aria-label="Aller à la section Mes Projets & Idées">
                     <i data-lucide="folder-open" class="w-5 h-5 mr-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="hidden md:inline text-sm">Projets</span>
+                    <span class="hidden md:inline text-sm" data-i18n-key="navProjects">Projets</span>
                 </a>
             </li>
             <li>
                 <a href="#contact-section" class="flex items-center text-white hover:text-accent-orange transition-colors duration-200 group" aria-label="Aller à la section Me Contacter">
                     <i data-lucide="mail" class="w-5 h-5 mr-1 group-hover:scale-110 transition-transform"></i>
-                    <span class="hidden md:inline text-sm">Contact</span>
+                    <span class="hidden md:inline text-sm" data-i18n-key="navContact">Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Fixed Bottom Navigation for Mobile -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-dark-gray py-2 z-40 border-t-2 border-accent-orange md:hidden bottom-nav">
+        <ul class="flex justify-around items-center h-full">
+            <li>
+                <a href="#profile-section" aria-label="Profil">
+                    <i data-lucide="user" class="w-6 h-6"></i>
+                    <span class="text-xs" data-i18n-key="navProfile">Profil</span>
+                </a>
+            </li>
+            <li>
+                <a href="#objectifs-section" aria-label="Objectifs">
+                    <i data-lucide="target" class="w-6 h-6"></i>
+                    <span class="text-xs" data-i18n-key="navObjectives">Objectifs</span>
+                </a>
+            </li>
+            <li>
+                <a href="#experiences-section" aria-label="Expériences">
+                    <i data-lucide="briefcase" class="w-6 h-6"></i>
+                    <span class="text-xs" data-i18n-key="navExperiences">Expériences</span>
+                </a>
+            </li>
+            <li>
+                <a href="#projets-section" aria-label="Projets">
+                    <i data-lucide="folder-open" class="w-6 h-6"></i>
+                    <span class="text-xs" data-i18n-key="navProjects">Projets</span>
+                </a>
+            </li>
+            <li>
+                <a href="#contact-section" aria-label="Contact">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                    <span class="text-xs" data-i18n-key="navContact">Contact</span>
                 </a>
             </li>
         </ul>
@@ -294,6 +366,174 @@
             fadeInElements.forEach(element => {
                 observer.observe(element);
             });
+
+            // --- Logique de changement de langue ---
+            const langSwitchButton = document.getElementById('lang-switch-button');
+            const body = document.body;
+
+            const translations = {
+                fr: {
+                    pageTitle: "Mon Portfolio",
+                    portfolioTitle: "Mon Portfolio",
+                    discoverProjectsButton: "Découvrir mes projets",
+                    profileName: "Joachim SERVANT",
+                    profileLine1: "- En 2nd au lycée Thiers à Marseille",
+                    profileLine2: "- Créatif, j'aime dessiner, je me suis mis à la photographie",
+                    profileLine3: "- Sportif, fais du parkour depuis 4 ans",
+                    profileLine4: "- Bénévole Unicef (Jeune ambassadeur)",
+                    objectivesTitle: "Mes objectifs",
+                    objectivesIntro1: "Mon objectif principal est d'être heureux.",
+                    objectivesIntro2: "Qu'est ce qui me rend heureux ?",
+                    objective1: "Faire des randonnées avec mes ami(e)s",
+                    objective2: "Voir ma famille",
+                    objective3: "M'amuser",
+                    objective4: "Faire du parkour",
+                    objective5: "Écouter de la bonne musique",
+                    objective6: "Et d'être admis à UWC",
+                    experiencesTitle: "Mes Expériences",
+                    experience2024Title: "Expérience 2024",
+                    benevolatTitle: "Bénévolat",
+                    benevolatPost2024: "Bénévole chez",
+                    postLabel: "Poste:",
+                    durationLabel: "Durée:",
+                    duration2024: "4 jours pendant les vacances 2024",
+                    associationLabel: "Association:",
+                    association2024: "Festival Idéklic",
+                    experience2025Title: "Expérience 2025",
+                    stage3emeTitle: "Stage de 3ème",
+                    locationLabel: "Lieu:",
+                    locationCNRS: "CNRS de Grenoble",
+                    tutorLabel: "Tuteur de stage:",
+                    tutorNames: "Bruno Fernandez et Grégory Garde",
+                    journalMinotsTitle: "Le journal des minots",
+                    journalMinotsText: "Le Journal des minots est le journal de mon collège, il est entièrement écrit par les élèves; que ce soit pour le choix des articles ou la façon dont nous l'avons écrit.",
+                    benevolatPostCarolyn: "Bénévole dans l'atelier de",
+                    duration2025: "4 jours pendant les vacances 2025",
+                    associationIdeklic: "Festival Idéklic",
+                    projectsTitle: "Mes Projets & Idées",
+                    jarvisTitle: "Projet 1: Jarvis",
+                    statusFinished: "État: Fini !",
+                    objectiveLabel: "Objectif:",
+                    jarvisObjective: "Faire un chatbot intelligent, qui peut communiquer avec les gens, le plus humainement possible.",
+                    finalLabel: "Final:",
+                    jarvisFinal: "Un assistant comme Jarvis dans le film d'Iron Man.",
+                    viewCodeButton: "Voir le code (Google Drive)",
+                    soufflerieTitle: "Projet 2: Soufflerie",
+                    soufflerieObjective: "Une soufflerie pour tester l'aérodynamique des objets.",
+                    soufflerieFinal: "Une soufflerie qui fonctionne.",
+                    viewVideoButton: "Voir la vidéo",
+                    healthDBTitle: "Idée 1: Base de donnée santé",
+                    statusPending: "État: En attente",
+                    healthDBObjective: "Créer une base de données comprenant toutes les maladies du monde, associées avec leurs symptômes et une option pour chercher les maladies ou les symptômes.",
+                    learnMoreSoonButton: "En savoir plus (bientôt)",
+                    contactTitle: "Me Contacter",
+                    contactIntro: "N'hésitez pas à me contacter pour toute question, opportunité ou simplement pour discuter !",
+                    copyright: "&copy; 2025 SERVANT Joachim. Tous droits réservés.",
+                    navProfile: "Profil",
+                    navObjectives: "Objectifs",
+                    navExperiences: "Expériences",
+                    navProjects: "Projets",
+                    navContact: "Contact"
+                },
+                en: {
+                    pageTitle: "My Portfolio",
+                    portfolioTitle: "My Portfolio",
+                    discoverProjectsButton: "Discover my projects",
+                    profileName: "Joachim SERVANT",
+                    profileLine1: "- Currently in 10th grade at Lycée Thiers in Marseille",
+                    profileLine2: "- Creative, I enjoy drawing, and I've started photography",
+                    profileLine3: "- Athlete, practicing parkour for 4 years",
+                    profileLine4: "- UNICEF Volunteer (Young Ambassador)",
+                    objectivesTitle: "My Objectives",
+                    objectivesIntro1: "My main objective is to be happy.",
+                    objectivesIntro2: "What would make me happy?",
+                    objective1: "Go hiking with my friends",
+                    objective2: "See my family",
+                    objective3: "Have fun",
+                    objective4: "Practice parkour",
+                    objective5: "Listen to good music",
+                    objective6: "And be admitted to UWC",
+                    experiencesTitle: "My Experiences",
+                    experience2024Title: "Experience 2024",
+                    benevolatTitle: "Volunteering",
+                    benevolatPost2024: "Volunteer at",
+                    postLabel: "Position:",
+                    durationLabel: "Duration:",
+                    duration2024: "4 days during 2024 holidays",
+                    associationLabel: "Association:",
+                    association2024: "Idéklic Festival",
+                    experience2025Title: "Experience 2025",
+                    stage3emeTitle: "9th Grade Internship",
+                    locationLabel: "Location:",
+                    locationCNRS: "CNRS of Grenoble",
+                    tutorLabel: "Internship Tutor:",
+                    tutorNames: "Bruno Fernandez and Grégory Garde",
+                    journalMinotsTitle: "The Minots' Newspaper",
+                    journalMinotsText: "The Minots' Newspaper is my middle school's newspaper, entirely written by students; from choosing articles to writing them.",
+                    benevolatPostCarolyn: "Volunteer in Carolyn's volunteer workshop",
+                    duration2025: "4 days during 2025 holidays",
+                    associationIdeklic: "Idéklic Festival",
+                    projectsTitle: "My Projects & Ideas",
+                    jarvisTitle: "Project 1: Jarvis",
+                    statusFinished: "Status: Finished!",
+                    objectiveLabel: "Objective:",
+                    jarvisObjective: "Create an intelligent chatbot that can communicate with people as humanly as possible.",
+                    finalLabel: "Final:",
+                    jarvisFinal: "An assistant like Jarvis from the Iron Man movie.",
+                    viewCodeButton: "View code (Google Drive)",
+                    soufflerieTitle: "Project 2: Wind Tunnel",
+                    soufflerieObjective: "A wind tunnel to test the aerodynamics of objects.",
+                    soufflerieFinal: "A functional wind tunnel.",
+                    viewVideoButton: "View video",
+                    healthDBTitle: "Idea 1: Health Database",
+                    statusPending: "Status: Pending",
+                    healthDBObjective: "Create a database including all diseases in the world, associated with their symptoms and an option to search for diseases or symptoms.",
+                    learnMoreSoonButton: "Learn more (soon)",
+                    contactTitle: "Contact Me",
+                    contactIntro: "Feel free to contact me for any questions, opportunities, or just to chat!",
+                    copyright: "&copy; 2025 SERVANT Joachim. All rights reserved.",
+                    navProfile: "Profile",
+                    navObjectives: "Objectives",
+                    navExperiences: "Experiences",
+                    navProjects: "Projects",
+                    navContact: "Contact"
+                }
+            };
+
+            function applyTranslations(lang) {
+                document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                    const key = element.getAttribute('data-i18n-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        // For copyright, use innerHTML to allow HTML entities
+                        if (key === 'copyright') {
+                            element.innerHTML = translations[lang][key];
+                        } else {
+                            element.textContent = translations[lang][key];
+                        }
+                    }
+                });
+                // Update page title separately as it's in the head
+                const pageTitleElement = document.querySelector('title[data-i18n-key="pageTitle"]');
+                if (pageTitleElement && translations[lang] && translations[lang]['pageTitle']) {
+                    pageTitleElement.textContent = translations[lang]['pageTitle'];
+                }
+            }
+
+            // Set initial language from localStorage or default to 'fr'
+            let currentLang = localStorage.getItem('portfolioLang') || 'fr';
+            body.setAttribute('data-lang', currentLang);
+            applyTranslations(currentLang);
+
+            if (langSwitchButton) {
+                langSwitchButton.textContent = currentLang.toUpperCase() === 'FR' ? 'EN / FR' : 'FR / EN'; // Update button text
+                langSwitchButton.addEventListener('click', () => {
+                    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+                    localStorage.setItem('portfolioLang', currentLang);
+                    body.setAttribute('data-lang', currentLang);
+                    applyTranslations(currentLang);
+                    langSwitchButton.textContent = currentLang.toUpperCase() === 'FR' ? 'EN / FR' : 'FR / EN'; // Update button text
+                });
+            }
         });
     </script>
 
