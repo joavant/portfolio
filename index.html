@@ -129,9 +129,9 @@
                 </div>
                 <div>
                     <h4 class="text-2xl font-medium mb-2" data-i18n-key="benevolatTitle">Bénévolat</h4>
-                    <p class="text-gray-700 mb-1" data-i18n-key="position2025"><strong>Poste:</strong> Bénévole dans l'atelier de <a href="https://www.instagram.com/carolyn_manga/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:no-underline">Carolyn</a></p>
+                    <p class="text-gray-700 mb-1" data-i18n-key="position2025"><strong>Poste:</strong> Bénévole dans l'atelier de <a href="https://www.instagram.com/carolyn_manga/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:no-underline">Carolyn, un ateleir de manga</a></p>
                     <p class="text-gray-700 mb-1" data-i18n-key="duration2025"><strong>Durée:</strong> 4 jours pendant les vacances 2025</p>
-                    <p class="text-gray-700" data-i18n-key="details2025"><strong>Détails:</strong> L'objectif de ces 4 jours en tant que bénévole est de permettre aux enfants de s'amuser librement dans le festival. J'ai aidé et encouragé les enfants à faire de leur mieux et à s'amuser.</p>
+                    <p class="text-gray-700" data-i18n-key="details2025"><strong>Détails:</strong> L'objectif de ces 4 jours en tant que bénévole est de permettre aux enfants de s'amuser librement dans le festival. J'ai aidé et encouragé les enfants à faire de leur mieux quand ils dessinaient et à s'amuser.</p>
                     <p class="text-gray-700" data-i18n-key="associationIdeklic"><strong>Association:</strong> Festival Idéklic</p>
                 </div>
             </div>
@@ -347,129 +347,131 @@
             // --- Logique de changement de langue ---
             const langSwitchButton = document.getElementById('lang-switch-button');
             const body = document.body;
-            const translations = {
-                fr: {
-                    pageTitle: "Mon Portfolio",
-                    portfolioTitle: "Mon Portfolio",
-                    profileName: "Joachim SERVANT",
-                    profileLine1: "- En 2nde au lycée Thiers",
-                    profileLine2: "- Créatif : j'aime dessiner, je me suis mis à la photographie",
-                    profileLine3: "- Sportif : parkour, escalade en blocs",
-                    profileLine4: "- Bénévole Unicef (Jeune ambassadeur)",
-                    objectivesTitle: "Mes objectifs",
-                    objectivesIntro1: "Mon objectif principal est d'être heureux.",
-                    objectivesIntro2: "Qu'est-ce qui me rendrait heureux ?",
-                    objective1: "Être admis à UWC",
-                    objective2: "Faire des randonnées avec mes ami(e)s",
-                    objective3: "Voir ma famille",
-                    objective4: "M'amuser",
-                    objective5: "Faire du parkour",
-                    objective6: "Écouter de la bonne musique",
-                    objective7: "Et bien d'autres choses...",
-                    experiencesTitle: "Mes Expériences",
-                    experience2024Title: "Expérience 2023-2024",
-                    benevolatTitle: "Bénévolat",
-                    position2024: "<strong>Poste:</strong> Bénévole chez <a href=\"https://www.chalain-biathlon.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Chalain-biathlon</a>",
-                    duration2024: "<strong>Durée:</strong> 4 jours pendant les vacances 2024",
-                    details2024: "<strong>Détails:</strong> L'objectif de ces 4 jours en tant que bénévole est de permettre aux enfants de s'amuser librement dans le festival. J'ai aidé dans mon atelier (le biathlon) les enfants en leur apprenant à tirer avec une carabine laser sur des cibles, debout ou allongés.",
-                    association2024: "<strong>Association:</strong> Festival Idéklic",
-                    experience2025Title: "Expérience 2024-2025",
-                    stage3emeTitle: "Stage de 3ème",
-                    locationCNRS: "<strong>Lieu:</strong> CNRS de Grenoble",
-                    tutorNames: "<strong>Tuteur de stage:</strong> Bruno Fernandez et Grégory Garde",
-                    journalMinotsTitle: "Le journal des minots",
-                    journalMinotsText: "Le Journal des minots est le journal de mon collège, il est entièrement écrit par les élèves ; que ce soit pour le choix des articles ou la façon dont nous l'avons écrit.",
-                    position2025: "<strong>Poste:</strong> Bénévole dans l'atelier de <a href=\"https://www.instagram.com/carolyn_manga/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Carolyn</a>",
-                    duration2025: "<strong>Durée:</strong> 4 jours pendant les vacances 2025",
-                    details2025: "<strong>Détails:</strong> L'objectif de ces 4 jours en tant que bénévole est de permettre aux enfants de s'amuser librement dans le festival. J'ai aidé et encouragé les enfants à faire de leur mieux et à s'amuser.",
-                    associationIdeklic: "<strong>Association:</strong> Festival Idéklic",
-                    experience2026Title: "Expérience 2025-2026",
-                    positionUnicef: "<strong>Poste:</strong> Bénévole en tant que <a href=\"https://www.unicef.fr/article/jeunes-ambassadeurs/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 no-underline hover:no-underline\">Jeune ambassadeur Unicef</a>",
-                    durationUnicef: "<strong>Durée:</strong> 1/2 journée",
-                    detailsUnicef: "<strong>Détails:</strong> Les jeunes de la ligue de l'enseignement écrivent \"Les droits des minots\" à partir de la CIDE et portent leurs projets à la Mairie sur le climat, la malnutrition et les conséquences de la guerre sur les enfants. Durant cette journée, j'ai animé un jeu de société créé par l'Unicef avec 6 personnes de mon âge.",
-                    projectsTitle: "Mes Projets & Idées",
-                    jarvisTitle: "Projet 1: Jarvis",
-                    statusFinished: "État: Fini !",
-                    jarvisObjective: "<strong>Objectif:</strong> Faire un chatbot intelligent, qui peut communiquer avec les gens, le plus humainement possible.",
-                    jarvisFinal: "<strong>Final:</strong> Un assistant comme Jarvis dans le film d'Iron Man.",
-                    viewCodeButton: "Voir le code (Google Drive)",
-                    soufflerieTitle: "Projet 2: Soufflerie",
-                    soufflerieObjective: "<strong>Objectif:</strong> Une soufflerie pour tester l'aérodynamique des objets.",
-                    soufflerieFinal: "<strong>Final:</strong> Une soufflerie qui fonctionne.",
-                    viewVideoButton: "Voir la vidéo",
-                    healthDBTitle: "Idée 1: Base de donnée santé",
-                    statusPending: "État: Stagnant",
-                    healthDBObjective: "Créer une base de données comprenant toutes les maladies du monde, associées à leurs symptômes et une option pour chercher les maladies ou les symptômes.",
-                    contactTitle: "Me Contacter",
-                    contactIntro: "N'hésitez pas à me contacter pour toute question.",
-                    copyright: "&copy; 2024 SERVANT Joachim. Tous droits réservés.",
-                    navProfile: "Profil",
-                    navObjectives: "Objectifs",
-                    navExperiences: "Expériences",
-                    navProjects: "Projets",
-                    navContact: "Contact"
-                },
+            // ... (code précédent)
+
+            const translations = {
+                fr: {
+                    pageTitle: "Mon Portfolio",
+                    portfolioTitle: "Mon Portfolio",
+                    profileName: "Joachim SERVANT",
+                    profileLine1: "- En 2nde au lycée Thiers", // CORRIGÉ : Lycée -> lycée
+                    profileLine2: "- Créatif : j'aime dessiner, je me suis mis à la photographie",
+                    profileLine3: "- Sportif : parkour, escalade en blocs",
+                    profileLine4: "- Bénévole Unicef (Jeune ambassadeur)",
+                    objectivesTitle: "Mes objectifs",
+                    objectivesIntro1: "Mon objectif principal est d'être heureux.",
+                    objectivesIntro2: "Qu'est-ce qui me rendrait heureux ?",
+                    objective1: "Être admis à UWC",
+                    objective2: "Faire des randonnées avec mes ami(e)s",
+                    objective3: "Voir ma famille",
+                    objective4: "M'amuser",
+                    objective5: "Faire du parkour",
+                    objective6: "Écouter de la bonne musique",
+                    objective7: "Et bien d'autres choses...",
+                    experiencesTitle: "Mes Expériences",
+                    experience2024Title: "Expérience 2023-2024",
+                    benevolatTitle: "Bénévolat",
+                    position2024: "<strong>Poste:</strong> Bénévole chez <a href=\"https://www.chalain-biathlon.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Chalain-biathlon</a>",
+                    duration2024: "<strong>Durée:</strong> 4 jours pendant les vacances 2024",
+                    details2024: "<strong>Détails:</strong> L'objectif de ces 4 jours en tant que bénévole est de permettre aux enfants de s'amuser librement dans le festival. J'ai aidé dans mon atelier (le biathlon) les enfants en leur apprenant à tirer avec une carabine laser sur des cibles, debout ou allongés.",
+                    association2024: "<strong>Association:</strong> Festival Idéklic",
+                    experience2025Title: "Expérience 2024-2025",
+                    stage3emeTitle: "Stage de 3ème",
+                    locationCNRS: "<strong>Lieu:</strong> CNRS de Grenoble",
+                    tutorNames: "<strong>Tuteur de stage:</strong> Bruno Fernandez et Grégory Garde",
+                    journalMinotsTitle: "Le journal des minots",
+                    journalMinotsText: "Le Journal des minots est le journal de mon collège. Il est entièrement écrit par les élèves, que ce soit pour le choix des articles ou la façon dont nous l'avons écrit.", // CORRIGÉ : Ponctuation et fluidité
+                    position2025: "<strong>Poste:</strong> Bénévole dans l'atelier de <a href=\"https://www.instagram.com/carolyn_manga/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Carolyn</a>",
+                    duration2025: "<strong>Durée:</strong> 4 jours pendant les vacances 2025",
+                    details2025: "<strong>Détails:</strong> L'objectif de ces 4 jours en tant que bénévole est de permettre aux enfants de s'amuser librement dans le festival. J'ai aidé et encouragé les enfants à faire de leur mieux et à s'amuser.",
+                    associationIdeklic: "<strong>Association:</strong> Festival Idéklic",
+                    experience2026Title: "Expérience 2025-2026",
+                    positionUnicef: "<strong>Poste:</strong> Bénévole en tant que <a href=\"https://www.unicef.fr/article/jeunes-ambassadeurs/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 no-underline hover:no-underline\">Jeune ambassadeur Unicef</a>",
+                    durationUnicef: "<strong>Durée:</strong> 1/2 journée",
+                    detailsUnicef: "<strong>Détails:</strong> Les jeunes de la ligue de l'enseignement écrivent \"Les droits des minots\" à partir de la CIDE et portent leurs projets à la Mairie sur le climat, la malnutrition et les conséquences de la guerre sur les enfants. Durant cette journée, j'ai animé un jeu de société créé par l'Unicef avec 6 personnes de mon âge.",
+                    projectsTitle: "Mes Projets & Idées",
+                    jarvisTitle: "Projet 1: Jarvis",
+                    statusFinished: "État: Fini !",
+                    jarvisObjective: "<strong>Objectif:</strong> Faire un chatbot intelligent qui peut communiquer avec les gens le plus humainement possible.", // CORRIGÉ : Ponctuation et fluidité
+                    jarvisFinal: "<strong>Final:</strong> Un assistant comme Jarvis dans le film d'Iron Man.",
+                    viewCodeButton: "Voir le code (Google Drive)",
+                    soufflerieTitle: "Projet 2: Soufflerie",
+                    soufflerieObjective: "<strong>Objectif:</strong> Une soufflerie pour tester l'aérodynamique des objets.",
+                    soufflerieFinal: "<strong>Final:</strong> Une soufflerie qui fonctionne.",
+                    viewVideoButton: "Voir la vidéo",
+                    healthDBTitle: "Idée 1: Base de données santé", // CORRIGÉ : donnée -> données
+                    statusPending: "État: Stagnant",
+                    healthDBObjective: "Créer une base de données comprenant toutes les maladies du monde, associées à leurs symptômes, et une option pour chercher les maladies ou les symptômes.", // CORRIGÉ : Fluidité
+                    contactTitle: "Me Contacter",
+                    contactIntro: "N'hésitez pas à me contacter pour toute question.",
+                    copyright: "&copy; 2024 SERVANT Joachim. Tous droits réservés.",
+                    navProfile: "Profil",
+                    navObjectives: "Objectifs",
+                    navExperiences: "Expériences",
+                    navProjects: "Projets",
+                    navContact: "Contact"
+                },
                 en: {
-                    pageTitle: "My Portfolio",
-                    portfolioTitle: "My Portfolio",
-                    profileName: "Joachim SERVANT",
-                    profileLine1: "- Currently in 10th grade at Thiers High School",
-                    profileLine2: "- Creative: I love to draw and have started photography",
-                    profileLine3: "- Athlete: practicing parkour and bouldering",
-                    profileLine4: "- UNICEF Volunteer (Young Ambassador)",
-                    objectivesTitle: "My Objectives",
-                    objectivesIntro1: "My main objective is to be happy.",
-                    objectivesIntro2: "What would make me happy?",
-                    objective1: "Be admitted to UWC",
-                    objective2: "Go hiking with my friends",
-                    objective3: "See my family",
-                    objective4: "Have fun",
-                    objective5: "Practice parkour",
-                    objective6: "Listen to good music",
-                    objective7: "And many other things...",
-                    experiencesTitle: "My Experiences",
-                    experience2024Title: "Experience 2023-2024",
-                    benevolatTitle: "Volunteering",
-                    position2024: "<strong>Position:</strong> Volunteer at <a href=\"https://www.chalain-biathlon.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Chalain-biathlon</a>",
-                    duration2024: "<strong>Duration:</strong> 4 days during 2024 holidays",
-                    details2024: "<strong>Details:</strong> The objective of these 4 days as a volunteer is to allow children to have fun freely at the festival. I helped in my workshop (biathlon) by teaching the children to shoot laser rifles at targets, standing or lying down.",
-                    association2024: "<strong>Association:</strong> Idéklic Festival",
-                    experience2025Title: "Experience 2024-2025",
-                    stage3emeTitle: "9th Grade Internship",
-                    locationCNRS: "<strong>Location:</strong> CNRS of Grenoble",
-                    tutorNames: "<strong>Internship Tutor:</strong> Bruno Fernandez and Gregory Garde",
-                    journalMinotsTitle: "The Minots' Newspaper",
-                    journalMinotsText: "The Minots' Newspaper is my middle school's newspaper, entirely written by students; from choosing articles to writing them.",
-                    position2025: "<strong>Position:</strong> Volunteer in <a href=\"https://www.instagram.com/carolyn_manga/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Carolyn's</a> workshop",
-                    duration2025: "<strong>Duration:</strong> 4 days during 2025 holidays",
-                    details2025: "<strong>Details:</strong> The objective of these 4 days as a volunteer is to allow children to have fun freely at the festival. I helped and encouraged the children to do their best and have fun.",
-                    associationIdeklic: "<strong>Association:</strong> Idéklic Festival",
-                    experience2026Title: "Experience 2025-2026",
-                    positionUnicef: "<strong>Position:</strong> Volunteer as a <a href=\"https://www.unicef.fr/article/jeunes-ambassadeurs/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 no-underline hover:no-underline\">UNICEF Young Ambassador</a>",
-                    durationUnicef: "<strong>Duration:</strong> 1/2 day",
-                    detailsUnicef: "<strong>Details:</strong> Young people from the 'Ligue de l'enseignement' wrote 'The Rights of the Minots' based on the CRC and presented their projects to the City Hall on climate, malnutrition, and the consequences of war on children. During this day, I led a board game created by UNICEF with 6 people my age.",
-                    projectsTitle: "My Projects & Ideas",
-                    jarvisTitle: "Project 1: Jarvis",
-                    statusFinished: "Status: Finished!",
-                    jarvisObjective: "<strong>Objective:</strong> Create an intelligent chatbot that can communicate with people as humanly as possible.",
-                    jarvisFinal: "<strong>Final:</strong> An assistant like Jarvis from the Iron Man movie.",
-                    viewCodeButton: "View code (Google Drive)",
-                    soufflerieTitle: "Project 2: Wind Tunnel",
-                    soufflerieObjective: "<strong>Objective:</strong> A wind tunnel to test the aerodynamics of objects.",
-                    soufflerieFinal: "<strong>Final:</strong> A functional wind tunnel.",
-                    viewVideoButton: "View video",
-                    healthDBTitle: "Idea 1: Health Database",
-                    statusPending: "Status: Stagnant",
-                    healthDBObjective: "Create a database of all the diseases in the world, associated with their symptoms and an option to search for diseases or symptoms.",
-                    contactTitle: "Contact Me",
-                    contactIntro: "Feel free to contact me for any questions.",
-                    copyright: "&copy; 2024 SERVANT Joachim. All rights reserved.",
-                    navProfile: "Profile",
-                    navObjectives: "Objectives",
-                    navExperiences: "Experiences",
-                    navProjects: "Projects",
-                    navContact: "Contact"
-                }
+                    pageTitle: "Joachim's Portfolio", // OPTIMISÉ
+                    portfolioTitle: "My Portfolio",
+                    profileName: "Joachim SERVANT",
+                    profileLine1: "- Currently in 10th Grade at Lycée Thiers (High School)", // OPTIMISÉ : Précision sur le système français
+                    profileLine2: "- Creative: I enjoy drawing and have started photography", // OPTIMISÉ : enjoy drawing, better flow
+                    profileLine3: "- Athlete: practicing parkour and bouldering",
+                    profileLine4: "- UNICEF Volunteer (Young Ambassador)",
+                    objectivesTitle: "My Objectives",
+                    objectivesIntro1: "My main objective is to be happy.",
+                    objectivesIntro2: "What makes me happy?", // OPTIMISÉ : plus direct que "would make me happy"
+                    objective1: "Be admitted to UWC",
+                    objective2: "Go hiking with my friends",
+                    objective3: "See my family",
+                    objective4: "Have fun",
+                    objective5: "Practice parkour",
+                    objective6: "Listen to good music",
+                    objective7: "And many other things...",
+                    experiencesTitle: "My Experiences",
+                    experience2024Title: "Experience 2023-2024",
+                    benevolatTitle: "Volunteering",
+                    position2024: "<strong>Role:</strong> Volunteer at <a href=\"https://www.chalain-biathlon.com/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Chalain-biathlon</a>", // Role is often better than position
+                    duration2024: "<strong>Duration:</strong> 4 days during 2024 holidays",
+                    details2024: "<strong>Details:</strong> The goal of these 4 days as a volunteer was to ensure the children could enjoy the festival freely. I assisted in my workshop (biathlon) by teaching them to shoot laser rifles at targets, from standing or prone positions.", // OPTIMISÉ : flow et vocabulaire
+                    association2024: "<strong>Association:</strong> Idéklic Festival",
+                    experience2025Title: "Experience 2024-2025",
+                    stage3emeTitle: "9th Grade Internship",
+                    locationCNRS: "<strong>Location:</strong> CNRS of Grenoble",
+                    tutorNames: "<strong>Internship Tutors:</strong> Bruno Fernandez and Grégory Garde", // Tutor -> Tutors (pluriel)
+                    journalMinotsTitle: "The Minots' Newspaper",
+                    journalMinotsText: "The Minots' Newspaper is my middle school's newspaper, written entirely by students; from choosing the articles to writing them.", // OPTIMISÉ : flow
+                    position2025: "<strong>Role:</strong> Volunteer in <a href=\"https://www.instagram.com/carolyn_manga/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:no-underline\">Carolyn's</a> workshop",
+                    duration2025: "<strong>Duration:</strong> 4 days during 2025 holidays",
+                    details2025: "<strong>Details:</strong> The goal of these 4 days as a volunteer was to ensure the children could enjoy the festival freely. I helped and encouraged the children to do their best and have fun while drawing.", // OPTIMISÉ : Ajout "while drawing" pour la précision
+                    associationIdeklic: "<strong>Association:</strong> Idéklic Festival",
+                    experience2026Title: "Experience 2025-2026",
+                    positionUnicef: "<strong>Role:</strong> Volunteer as a <a href=\"https://www.unicef.fr/article/jeunes-ambassadeurs/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 no-underline hover:no-underline\">UNICEF Young Ambassador</a>",
+                    durationUnicef: "<strong>Duration:</strong> Half a day", // OPTIMISÉ : Half a day au lieu de 1/2
+                    detailsUnicef: "<strong>Details:</strong> Young people from the 'Ligue de l'enseignement' wrote 'The Rights of the Minots' based on the CRC (Convention on the Rights of the Child) and presented their projects to the City Hall on climate, malnutrition, and the consequences of war on children. During this day, I led a board game created by UNICEF with 6 people my age.", // OPTIMISÉ : Ajout CRC pour clarifier
+                    projectsTitle: "My Projects & Ideas",
+                    jarvisTitle: "Project 1: Jarvis",
+                    statusFinished: "Status: Finished!",
+                    jarvisObjective: "<strong>Objective:</strong> Create an intelligent chatbot that can communicate with people as humanly as possible.",
+                    jarvisFinal: "<strong>Final Product:</strong> An assistant like Jarvis from the Iron Man movie.", // OPTIMISÉ : Final Product, better for portfolio
+                    viewCodeButton: "View Code (Google Drive)",
+                    soufflerieTitle: "Project 2: Wind Tunnel", // OPTIMISÉ : Wind Tunnel, terme technique précis
+                    soufflerieObjective: "<strong>Objective:</strong> A wind tunnel to test the aerodynamics of objects.",
+                    soufflerieFinal: "<strong>Final Product:</strong> A functional wind tunnel.",
+                    viewVideoButton: "View Video",
+                    healthDBTitle: "Idea 1: Health Database", // OPTIMISÉ : Database (singulier)
+                    statusPending: "Status: Stalled", // OPTIMISÉ : Stalled au lieu de Pending, plus précis pour 'Stagnant'
+                    healthDBObjective: "Create a database including all diseases worldwide, associated with their symptoms, with an option to search for diseases or symptoms.", // OPTIMISÉ : Fluidité
+                    contactTitle: "Contact Me",
+                    contactIntro: "Feel free to contact me with any questions.",
+                    copyright: "&copy; 2024 SERVANT Joachim. All rights reserved.",
+                    navProfile: "Profile",
+                    navObjectives: "Objectives",
+                    navExperiences: "Experiences",
+                    navProjects: "Projects",
+                    navContact: "Contact"
+                }
             };
             function applyTranslations(lang) {
                 document.querySelectorAll('[data-i18n-key]').forEach(element => {
