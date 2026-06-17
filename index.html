@@ -149,7 +149,7 @@
             color: var(--bg-color);
         }
 
-        /* Styles de la ligne de temps (Timeline) */
+        /* Styles de la ligne de temps (Timeline) — CORRIGÉ POUR LA GAUCHE */
         .timeline {
             position: relative;
             margin: 30px 0;
@@ -164,24 +164,26 @@
             bottom: 0;
             width: 2px;
             background: var(--border-color);
-            left: 20px;
+            left: 20px; /* Aligne la ligne verticale bien à gauche */
         }
 
         .timeline-item {
             position: relative;
             margin-bottom: 25px;
-            padding-left: 50px;
+            padding-left: 50px; /* Crée l'espace à gauche pour laisser passer la ligne */
+            text-align: left;    /* Force le texte à s'aligner à gauche */
         }
 
         .timeline-marker {
             position: absolute;
             top: 5px;
-            left: 12px;
+            left: 12px; /* Centre la puce exactement sur la ligne verticale de gauche */
             width: 16px;
             height: 16px;
             border-radius: 50%;
             background: var(--accent-color);
             border: 3px solid var(--bg-color);
+            z-index: 2;
         }
 
         .timeline-content {
@@ -189,37 +191,7 @@
             border: 1px solid var(--border-color);
             padding: 15px 20px;
             border-radius: 6px;
-        }
-
-        .timeline-date {
-            font-size: 0.85em;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .timeline-title {
-            color: #ffffff;
-            font-size: 1.1em;
-            margin: 0 0 5px 0;
-            font-weight: 600;
-        }
-
-        .timeline-desc {
-            margin: 0;
-            font-size: 0.95em;
-            color: var(--text-color);
-        }
-
-        /* Style pour les liens dans la timeline */
-        .timeline-desc a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .timeline-desc a:hover {
-            text-decoration: underline;
+            width: auto; /* Permet au bloc de s'étendre naturellement vers la droite */
         }
 
         footer {
