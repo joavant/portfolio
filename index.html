@@ -1,450 +1,525 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio — Joachim SERVANT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0b0f19;
-            --container-bg: #151b26;
-            --text-color: #c5d4eb;
-            --accent-color: #00d9ff;
-            --accent-hover: #00b3d6;
-            --muted-color: #8aa3c4;
-            --border-color: #243146;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #151b26 0%, #0b0f19 100%);
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        header h1 {
-            color: var(--accent-color);
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-            letter-spacing: 1px;
-        }
-
-        header p.subtitle {
-            font-size: 1.2em;
-            color: var(--muted-color);
-            margin: 0 0 20px 0;
-        }
-
-        .tags {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: rgba(0, 217, 255, 0.1);
-            color: var(--accent-color);
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            border: 1px solid rgba(0, 217, 255, 0.2);
-        }
-
-        main {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        h2 {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 40px;
-            font-weight: 500;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .project-grid {
-                grid-template-columns: 1fr 1fr;
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display (Serif header) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        classic: {
+                            bg: '#fcfbf7',
+                            surface: '#ffffff',
+                            navy: '#0f172a',
+                            slate: '#334155',
+                            muted: '#64748b',
+                            warm: '#f1efe9',
+                            border: '#e2e0d8',
+                            gold: '#b45309',
+                            goldlight: '#fef3c7',
+                        }
+                    }
+                }
             }
         }
+    </script>
 
-        .card {
-            background-color: var(--container-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfbf7;
+            color: #1e293b;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.1);
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .card h3 {
-            margin: 0 0 10px 0;
-            color: #ffffff;
-            font-size: 1.3em;
+        ::-webkit-scrollbar-track {
+            background: #fcfbf7;
         }
-
-        .status {
-            font-size: 0.85em;
-            padding: 3px 8px;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
             border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 15px;
         }
-
-        .status.encours { background-color: #b38600; color: #fff; }
-        .status.termine { background-color: #1e7e34; color: #fff; }
-        .status.idee { background-color: #4b5d73; color: #fff; }
-        .status.fini { background-color: #008000 ; color: #fff; }
-
-        .card p {
-            margin: 0 0 20px 0;
-            color: var(--text-color);
-            font-size: 0.95em;
-            flex-grow: 1;
-        }
-
-        .btn {
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 0.9em;
-            font-weight: bold;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        /* Styles de la ligne de temps (Timeline) — ALIGNÉ À GAUCHE */
-        .timeline {
-            position: relative;
-            margin: 30px 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-            left: 20px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-            padding-left: 50px;
-            text-align: left;
-        }
-
-        .timeline-marker {
-            position: absolute;
-            top: 5px;
-            left: 12px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            border: 3px solid var(--bg-color);
-            z-index: 2;
-        }
-
-        .timeline-content {
-            background-color: var(--container-bg);
-            border: 1px solid var(--border-color);
-            padding: 15px 20px;
-            border-radius: 6px;
-            width: auto;
-        }
-
-        .timeline-date {
-            font-size: 0.85em;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .timeline-title {
-            color: #ffffff;
-            font-size: 1.1em;
-            margin: 0 0 5px 0;
-            font-weight: 600;
-        }
-
-        .timeline-desc {
-            margin: 0;
-            font-size: 0.95em;
-            color: var(--text-color);
-        }
-
-        .timeline-desc a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .timeline-desc a:hover {
-            text-decoration: underline;
-        }
-
-        /* NOUVEAUX STYLES : Section Contactez-moi */
-        .contact-section {
-            background-color: var(--container-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .contact-section p {
-            color: var(--text-color);
-            margin-bottom: 25px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: rgba(21, 27, 38, 0.6);
-            transition: all 0.2s ease;
-        }
-
-        .contact-item i {
-            font-size: 1.4em;
-            color: var(--accent-color);
-            transition: transform 0.2s;
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent-color);
-            color: #ffffff;
-            background: rgba(0, 217, 255, 0.05);
-            box-shadow: 0 0 10px rgba(0, 217, 255, 0.1);
-        }
-
-        .contact-item:hover i {
-            transform: scale(1.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--muted-color);
-            font-size: 0.9em;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen text-slate-800 selection:bg-slate-900 selection:text-white">
 
-    <header>
-        <h1>Joachim SERVANT</h1>
-        <p class="subtitle">Élève en classe de Seconde</p>
-        <div class="tags">
-            <span class="tag">Créatif</span>
-            <span class="tag">Sportif</span>
-            <span class="tag">Passionné de Sciences & Tech</span>
-            <span class="tag">Bénévole</span>
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#fcfbf7]/90 backdrop-blur-md border-b border-classic-border transition-all">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="font-serif text-xl font-bold tracking-tight text-slate-900 hover:opacity-80 transition-opacity">
+                Joachim SERVANT
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="#projets" class="hover:text-slate-900 transition-colors">Projets</a>
+                <a href="#parcours" class="hover:text-slate-900 transition-colors">Parcours</a>
+                <a href="#competences" class="hover:text-slate-900 transition-colors">Compétences</a>
+                <a href="#contact" class="px-4 py-2 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-all text-xs tracking-wide uppercase">
+                    Contact
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden text-slate-700 focus:outline-none" aria-label="Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 border-b border-classic-border bg-[#fcfbf7]">
+            <div class="flex flex-col space-y-3 pt-2 text-sm font-medium text-slate-700">
+                <a href="#projets" class="hover:text-slate-900 py-1">Projets</a>
+                <a href="#parcours" class="hover:text-slate-900 py-1">Parcours</a>
+                <a href="#competences" class="hover:text-slate-900 py-1">Compétences</a>
+                <a href="#contact" class="hover:text-slate-900 py-1 text-amber-800 font-semibold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header class="max-w-5xl mx-auto px-6 pt-16 pb-12">
+        <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/60 border border-amber-200 text-amber-900 text-xs font-semibold uppercase tracking-wider mb-6">
+                <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                Lycéen
+            </div>
+            
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+                Joachim SERVANT
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 font-light leading-relaxed mb-8">
+                Passionné par l'innovation scientifique, le développement d'intelligence artificielle, la programmation, l'aéronautique et l'engagement citoyen auprès de l'UNICEF et du monde associatif.
+            </p>
+
+            <!-- Key Tags -->
+            <div class="flex flex-wrap gap-2.5 mb-10">
+                <span class="px-3.5 py-1.5 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-microchip text-slate-500"></i> Intelligence Artificielle, RAG, Python
+                </span>
+                <span class="px-3.5 py-1.5 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-wind text-slate-500"></i> Aérodynamique Expérimentale
+                </span>
+                <span class="px-3.5 py-1.5 rounded-md bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-heart text-amber-600"></i> Engagement Bénévole
+                </span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#projets" class="px-5 py-3 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition-all shadow-sm flex items-center gap-2">
+                    Découvrir mes projets <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="#contact" class="px-5 py-3 rounded-lg bg-white border border-slate-300 text-slate-700 font-medium text-sm hover:bg-slate-50 transition-all shadow-sm">
+                    Me contacter
+                </a>
+            </div>
         </div>
     </header>
 
-    <main>
-        
-        <h2>Projets Réalisés & Idées</h2>
-        <div class="project-grid">
-            
-            <div class="card">
-                <div>
-                    <span class="status encours">En Amélioration / Démo disponible</span>
-                    <h3>Project J.A.R.V.I.S.</h3>
-                    <p>Assistant personnel intelligent, multimodal et hors-ligne. Comprend un système RAG (Ollama & ChromaDB), de la vision par ordinateur, et un graphe de co-occurrence de données interactif 2D/3D.</p>
-                </div>
-                <a href="https://github.com/joavant/Jarvis" class="btn">Voir sur github</a>
+    <!-- Key Metrics Grid -->
+    <section class="max-w-5xl mx-auto px-6 py-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div class="font-serif text-3xl font-bold text-slate-900 mb-1">4</div>
+                <div class="text-xs font-medium text-slate-500">Projets Majeurs Tech & Physique</div>
             </div>
-
-            <div class="card">
-                <div>
-                    <span class="status fini">Fini</span>
-                    <h3>Projet 2 : Soufflerie Aérodynamique</h3>
-                    <p>Conception et fabrication d'une soufflerie physique expérimentale destinée à tester la pénétration dans l'air et la résistance aérodynamique de différents objets.</p>
-                </div>
-                <a href="https://www.youtube.com/embed/zZSfZBnjHd4?autoplay=1&end=1080" class="btn">Voir la vidéo</a>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div class="font-serif text-3xl font-bold text-slate-900 mb-1">10+</div>
+                <div class="text-xs font-medium text-slate-500">Engagements Associatifs & Concours</div>
             </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div class="font-serif text-3xl font-bold text-slate-900 mb-1">UNICEF</div>
+                <div class="text-xs font-medium text-slate-500">Jeune Ambassadeur</div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Section Projets Majeurs -->
+    <section id="projets" class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200 mt-8">
+        <div class="mb-10">
+            <h2 class="font-serif text-3xl font-bold text-slate-900 mb-2">Mes projets majeurs</h2>
+            <p class="text-slate-600 text-sm">Développements informatiques et travaux expérimentaux récents.</p>
         </div>
 
-        <h2>Expériences, Engagements & Parcours</h2>
-        <ul class="timeline">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Project Card 1: J.A.R.V.I.S. -->
+            <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200 text-xs font-semibold">
+                            En développement et en amélioration
+                        </span>
+                        <i class="fa-solid fa-robot text-slate-400 text-lg"></i>
+                    </div>
 
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Lycée (Classe de 2de)</div>
-                    <div class="timeline-title">Concours CGénial — Présentation du Projet DIVA</div>
-                    <p class="timeline-desc">Sélection et présentation du projet scientifique innovant DIVA dans le cadre du concours lycéen CGénial.</p>
+                    <h3 class="font-serif text-2xl font-bold text-slate-900 mb-3">Project J.A.R.V.I.S.</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        J.A.R.V.I.S. est un assistant domestique inspiré d'IRON MAN, pensé pour Linux (GNOME). Un LLM local tourne via Ollama, appelle des outils (tool calling) pour piloter l'ordinateur, puis répond à voix haute avec Piper TTS. Rien n'est envoyé dans le cloud, hors météo et IP publique.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium">Python</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium">Ollama & ChromaDB</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium">Piper TTS</span>
+                    </div>
                 </div>
-            </li>
 
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Lycée (Classe de 2de)</div>
-                    <div class="timeline-title">Participation à BIONEXTGEN</div>
-                    <p class="timeline-desc">Immersion en tant que chercheur sur notre propre projet. <a href="https://www.instagram.com/bionextgen_13/" target="_blank">Accédez à l'Instagram du projet</a></p>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-xs text-slate-400">Code disponible sur GitHub</span>
+                    <a href="https://github.com/joavant/Jarvis" target="_blank" class="text-xs font-semibold text-slate-900 hover:text-amber-800 transition-colors inline-flex items-center gap-1.5">
+                        Consulter <i class="fa-brands fa-github"></i>
+                    </a>
                 </div>
-            </li>
-            
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Lycée (Classe de 2de) — Année Scolaire 2025-2026</div>
-                    <div class="timeline-title">Journée de l'Enfant avec l'UNICEF</div>
-                    <p class="timeline-desc">Engagement et participation active à l'organisation de la Journée de l'Enfant pour sensibiliser aux droits des mineurs.</p>
+            </div>
+
+            <!-- Project Card 2: Soufflerie -->
+            <div class="bg-white rounded-xl border border-slate-200 p-7 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+                            Finalisé
+                        </span>
+                        <i class="fa-solid fa-wind text-slate-400 text-lg"></i>
+                    </div>
+
+                    <h3 class="font-serif text-2xl font-bold text-slate-900 mb-3">Soufflerie Aérodynamique</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Conception et assemblage d’une soufflerie physique expérimentale permettant d'observer la pénétration dans l’air ainsi que l'aérodynamique de divers objets.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium">Physique Appliquée</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium">Modélisation</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 text-xs font-medium">Tests Pratiques</span>
+                    </div>
                 </div>
-            </li>
 
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Vacances 2025 (Fin de 3ème)</div>
-                    <div class="timeline-title">Festival Idéklic — Participation n°2 (4 Jours)</div>
-                    <p class="timeline-desc">Bénévole pour la deuxième fois. Animation d'un atelier d'écriture et de création de mangas animé par l'artiste Caro-lyn.</p>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-xs text-slate-400">Démonstration vidéo</span>
+                    <a href="https://www.youtube.com/embed/zZSfZBnjHd4?autoplay=1&end=1080" target="_blank" class="text-xs font-semibold text-slate-900 hover:text-amber-800 transition-colors inline-flex items-center gap-1.5">
+                        Voir la vidéo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                 </div>
-            </li>
+            </div>
+        </div>
+    </section>
 
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Courant 2025 (Marseille)</div>
-                    <div class="timeline-title">Jeune Ambassadeur UNICEF</div>
-                    <p class="timeline-desc">En partenariat avec la Ligue 13 de l'Enseignement à la suite de la CIDE (Convention Internationale des Droits de l'Enfant). Animation d'un jeu éducatif et présentation de projets l'après-midi.</p>
-                </div>
-            </li>
+    <!-- Section Timeline / Parcours -->
+    <section id="parcours" class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+            <div>
+                <h2 class="font-serif text-3xl font-bold text-slate-900 mb-2">Parcours & Engagements</h2>
+                <p class="text-slate-600 text-sm">Projets, stages d'observation et bénévolat.</p>
+            </div>
 
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Courant 2025 (Marseille)</div>
-                    <div class="timeline-title">Marché pour l'Inclusion et la Biodiversité</div>
-                    <p class="timeline-desc">Action éco-citoyenne et solidaire de terrain à Marseille en faveur de l'inclusion sociale et environnementale. Ma première action.</p>
-                </div>
-            </li>
-
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Janvier 2025 (Classe de 3ème)</div>
-                    <div class="timeline-title">Stage d'Observation Professionnelle — CNRS de Grenoble</div>
-                    <p class="timeline-desc">Stage d'une semaine au Centre National de la Recherche Scientifique. Étude et observation de la recherche fondamentale, des accélérateurs de particules et des détecteurs ATLAS/CMS.</p>
-                </div>
-            </li>
-
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Année de 3ème (2024-2025)</div>
-                    <div class="timeline-title">Rédaction — Journal des Minots</div>
-                    <p class="timeline-desc">Contribution éditoriale, rédaction d'articles et participation au journal de notre collège.</p>
-                </div>
-            </li>
-
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Vacances 2024 (Fin de 4ème)</div>
-                    <div class="timeline-title">Festival Idéklic — Élection n°1 & Biathlon</div>
-                    <p class="timeline-desc">4 jours d'engagement bénévole dans un atelier apprenant aux enfants à faire du biathlon.</p>
-                </div>
-            </li>
-
-            <li class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Classe de 4ème</div>
-                    <div class="timeline-title">Stage d'Orientation — Don Bosco (Filière BAC CIEL)</div>
-                    <p class="timeline-desc">Immersion de découverte technique au sein de l'établissement Don Bosco orienté vers le BAC CIEL.</p>
-                </div>
-            </li>
-
-        </ul>
-
-        <h2>✉️ Contact</h2>
-        <div class="contact-section">
-            <p>Un projet à aborder, une question scientifique ou envie d'échanger ? N'hésitez pas à me joindre !</p>
-            <div class="contact-links">
-                
-                <!--<a href="mailto:#####" class="contact-item">
-                    <i class="fa-regular fa-envelope"></i> Par Email a ajouter
-                </a> -->
-                
-                <a href="https://www.instagram.com/joachim_vant/" target="_blank" class="contact-item">
-                    <i class="fa-brands fa-instagram"></i> Instagram
-                </a>
-                
-                <a href="https://github.com/joavant" target="_blank" class="contact-item">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-
+            <!-- Timeline Filter Tabs -->
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="filter-container">
+                <button data-filter="all" class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-slate-900 text-white filter-btn transition-colors">Tous</button>
+                <button data-filter="science" class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 filter-btn transition-colors">Sciences & Recherche</button>
+                <button data-filter="benevolat" class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 filter-btn transition-colors">Bénévolat</button>
             </div>
         </div>
 
-    </main>
+        <!-- Timeline Container -->
+        <div class="relative border-l-2 border-slate-200 ml-4 md:ml-32 space-y-8">
 
-    <footer>
-        <p>© 2026 Joachim SERVANT. Tous droits réservés.</p>
+            <!-- Item 1 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="science">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">2025 – 2026</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">2025 – 2026</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Concours CGénial — Projet DIVA</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Lycée (2de)</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Sélection et soutenance du projet scientifique innovant DIVA devant un jury dans le cadre du concours national CGénial.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="science">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">2025 – 2026</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">2025 – 2026</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Projet BIONEXTGEN</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Lycée</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        Immersion en conditions de recherche appliquée autour d'un projet d'innovation scientifique.
+                    </p>
+                    <a href="https://www.instagram.com/bionextgen_13/" target="_blank" class="text-xs font-semibold text-slate-800 hover:underline inline-flex items-center gap-1">
+                        <i class="fa-brands fa-instagram text-slate-500"></i> Voir la page Instagram
+                    </a>
+                    <a href="https://www.bio-nextgen.com/" target="_blank" class="text-xs font-semibold text-slate-800 hover:underline inline-flex items-center gap-1">
+                        <i class="fa-brands fa-web text-slate-500"></i> Voir le site internet 
+                    </a>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="benevolat">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-amber-600"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">2025 – 2026</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">2025 – 2026</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Journée de l'Enfant — UNICEF</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-amber-50 text-amber-900 font-medium">Engagement</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Implication active dans la sensibilisation et l'organisation d'ateliers pour la défense et l'application des droits de l'enfant.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="benevolat">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">Été 2025</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">Été 2025</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Festival Idéklic — 2ème Édition</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Bénévolat</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Quatre jours d'animation bénévole d'un atelier d'écriture et de création de mangas, en collaboration avec l'artiste Caro-lyn.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="benevolat">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-amber-600"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">Courant 2025</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">Courant 2025 — Marseille</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Jeune Ambassadeur UNICEF</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-amber-50 text-amber-900 font-medium">CIDE</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Partenariat avec la Ligue 13 de l'Enseignement à la suite de la Convention Internationale des Droits de l'Enfant. Animation d'un jeu éducatif.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="benevolat">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">Courant 2025</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">Courant 2025 — Marseille</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Marche pour l'Inclusion & la Biodiversité</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Éco-citoyen</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Participation sur le terrain à une initiative solidaire et éco-citoyenne favorisant la biodiversité urbaine et la cohésion sociale.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="science">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">Janvier 2025</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">Janvier 2025 (Classe de 3ème)</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Stage au CNRS Grenoble</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Physique</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Stage d'observation au Centre National de la Recherche Scientifique. Découverte de la recherche fondamentale, de la matiere condensée et la superconductivité à très basse température.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="benevolat">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">2024 – 2025</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">2024 – 2025 (Classe de 3ème)</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Rédacteur au Journal des Minots</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Rédaction</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Rédaction d'articles et travaux d'écriture pour le journal de l'établissement scolaire.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 9 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="benevolat">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">Été 2024</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">Été 2024</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Festival Idéklic — 1ère Édition</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Bénévolat</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Premier engagement bénévole de 4 jours pour encadrer et animer un atelier d'initiation au biathlon pour enfants.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 10 -->
+            <div class="timeline-item relative pl-6 md:pl-10 group" data-category="science">
+                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-slate-800"></div>
+                <div class="hidden md:block absolute -left-32 top-1 text-xs font-semibold text-slate-400 text-right w-24">Classe de 4ème</div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="md:hidden text-xs font-semibold text-slate-400 block mb-1">Classe de 4ème</span>
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="font-serif text-lg font-bold text-slate-900">Stage de Découverte Technique — Don Bosco</h3>
+                        <span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Tech CIEL</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Immersion technique axée sur la filière BAC CIEL (Cybersécurité, Informatique, Réseaux et Électronique).
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="competences" class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
+        <div class="mb-10">
+            <h2 class="font-serif text-3xl font-bold text-slate-900 mb-2">Domaines de Compétences</h2>
+            <p class="text-slate-600 text-sm">Aperçu, mais il y a encore beaucoup de choses que j'ai envie d'apprendre !</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-800 mb-4">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Sciences & IA</h3>
+                <ul class="text-slate-600 text-sm space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-slate-400"></i> Python & Ollama</li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-800 mb-4">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Rédaction & Médias</h3>
+                <ul class="text-slate-600 text-sm space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-slate-400"></i> Rédaction d'articles scolaires</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-slate-400"></i> Communication d'équipe</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-slate-400"></i> Revue scientifique</li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div class="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-800 mb-4">
+                    <i class="fa-solid fa-people-roof"></i>
+                </div>
+                <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Engagement Citoyen</h3>
+                <ul class="text-slate-600 text-sm space-y-2">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-slate-400"></i> Ambassadeur UNICEF (CIDE)</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-slate-400"></i> Animation d'ateliers pour enfants</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-xs text-slate-400"></i> Sensibilisation éco-citoyenne</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-12 text-center shadow-sm">
+            <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3">Me Contacter</h2>
+            <p class="text-slate-600 max-w-lg mx-auto text-sm leading-relaxed mb-8">
+                Pour parler d'un projet, d'une collaboration ou simplement pour échanger, n'hésitez pas à me contacter via mes réseaux sociaux ou par email. Je suis ouvert à toutes les discussions constructives et aux opportunités d'apprentissage.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="https://github.com/joavant" target="_blank" class="px-6 py-3 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-brands fa-github text-base"></i> Profil GitHub
+                </a>
+                <a href="https://www.instagram.com/joachim_vant/" target="_blank" class="px-6 py-3 rounded-lg bg-white border border-slate-300 text-slate-800 font-medium text-sm hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-brands fa-instagram text-base text-pink-700"></i> Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span>© 2026 Joachim SERVANT. Tous droits réservés.</span>
+            <span>Lycéen</span>
+        </div>
     </footer>
 
+    <!-- Vanilla JS Logic -->
+    <script>
+        // Mobile Navigation Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Timeline Category Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-slate-900', 'text-white');
+                    b.classList.add('bg-white', 'border', 'border-slate-300', 'text-slate-700');
+                });
+
+                btn.classList.remove('bg-white', 'border', 'border-slate-300', 'text-slate-700');
+                btn.classList.add('bg-slate-900', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+
+                timelineItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+</html>
